@@ -1,0 +1,47 @@
+.background {
+    background-color: #ffffff;
+    font-size: calc(10px + 2vmin);
+  }
+
+  .Headercontainer { 
+    margin-left: 40px;
+    display: flex;
+    justify-content: space-between;
+  
+  }
+  .image{
+    border-radius: 14px;
+  }
+
+
+  .Account {
+    display:flex;
+    justify-content:space-around;
+    height: 30px;
+    width: auto;
+  }
+
+  .Account> * {
+    margin-right: 15px;
+  }
+
+  .search{
+    background-color: #FFD8B4;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    margin-left: 40px;
+  }
+
+  .searchbar{
+      width: 30%;
+      height: auto;
+  }
+
+
+  
+
+  .location{
+    margin-left: 40px;
+  }
+  

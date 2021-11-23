@@ -1,0 +1,86 @@
+.background {
+    background-color: #ffffff;
+    font-size: calc(10px + 2vmin);
+  }
+
+.Headercontainer { 
+    margin-left: 40px;
+    display: flex;
+    justify-content: space-between;
+  
+  }
+
+
+.image{
+    border-radius: 14px;
+  }
+
+
+.Account {
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    height: 30px;
+    width: auto;
+  }
+
+.Account> * {
+    margin-right: 15px;
+  }
+
+
+.OrderStats {
+    background-color: #FFD8B4;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 200px;
+}
+.OrderStatus{
+    display: flex;
+    align-items: baseline;
+
+}
+
+.OrderInfoContainer{
+    background-color: #FFD8B4; 
+    margin-top: 50px; 
+    padding-bottom: 100px;
+    padding-left: 30px;
+    margin-bottom: 350px;
+    line-height: 10px;
+}
+
+.OrderDetailContainer{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 100px;
+}
+.footer{
+    background-color: #FFD8B4;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 10px;
+  }
+
+
+.socialmedia{
+    display: flex;
+    margin-top: 15px;
+    width: 50px;
+    justify-content: space-around;
+  }
+
+
+.socialmedia> * {
+    margin-right: 10px;
+  }
+  .restaurantLogin:hover {
+    cursor: pointer;
+  }
+
+  
+
+ 
+  

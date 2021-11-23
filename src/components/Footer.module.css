@@ -1,0 +1,31 @@
+.background {
+    background-color: #ffffff;
+    font-size: calc(10px + 2vmin);
+  }
+
+  
+  .footer{
+    background-color: #FFD8B4;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 10px;
+  }
+
+
+  .socialmedia{
+    display: flex;
+    margin-top: 15px;
+    width: 50px;
+    justify-content: space-around;
+  }
+
+
+  .socialmedia> * {
+    margin-right: 10px;
+  }
+  .restaurantLogin:hover {
+    cursor: pointer;
+  }
+
+ 
+  
