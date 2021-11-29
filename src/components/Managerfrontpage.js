@@ -5,6 +5,7 @@ import styles from './Managerfrontpage.module.css';
 function Managerfrontpage(props) {
     return (
       <div className="App">
+          <h1>Restaurant frontpage (logged in)  </h1>
         <header className={styles.background}>
           <div >
       

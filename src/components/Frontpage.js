@@ -7,27 +7,15 @@ function Frontpage() {
       <header className={styles.background}>
 
       <div>
-      <p>Welcome restaurant manager </p>
+      <h5>Restaurant frontpage (not logged in)</h5>
             
         </div>
+        
             <div className={styles.onSale}>
-            <img className={styles.ufo} src='ufo2.png' alt='picture'/>
+            <h3>Join our service to make people find your restaurant</h3>
+            <a><img src='restaurant-manager-picture.jpg' alt=''/></a>
+            <br/>
             </div>
-            
-           
-
-
-            <p className={styles.categories}> Food categories:</p>
-            <div className={styles.optionmenu}>
-            <img className={styles.Placeholder} src='restaurantPlaceHolderIcon.jpg' alt='picture'/>
-            <img className={styles.Placeholder} src='restaurantPlaceHolderIcon.jpg' alt='picture'/>
-            <img className={styles.Placeholder} src='restaurantPlaceHolderIcon.jpg' alt='picture'/>
-            <img className={styles.Placeholder} src='restaurantPlaceHolderIcon.jpg' alt='picture'/>
-            <img className={styles.Placeholder} src='restaurantPlaceHolderIcon.jpg' alt='picture'/>
-            <img className={styles.Placeholder} src='restaurantPlaceHolderIcon.jpg' alt='picture'/>
-            </div>
-         
-
       
       </header>
       </div>

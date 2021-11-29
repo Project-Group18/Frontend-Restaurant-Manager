@@ -11,7 +11,7 @@ export default function Header() {
     return (
         <div>
               <div class={styles.Headercontainer}>
-        <img className={styles.image} src='olivertwistLogo1.jpg' alt='picture'/>
+        <a href="/"><img className={styles.image} src='olivertwistLogo1.jpg' alt=''/></a>
 
                   <div className={styles.Account}>
                   <button onClick={() => setButtonLogin(true)}>Log in</button>

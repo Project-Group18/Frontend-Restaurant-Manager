@@ -1,0 +1,71 @@
+.background {
+    background-color: #ffffff;
+    font-size: calc(10px + 2vmin);
+  }
+
+  .Headercontainer { 
+    display: flex;
+    margin-top: 70px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 70px;
+    justify-content: space-between;
+    line-height: 30px;
+  
+  }
+  .image{
+    border-radius: 14px;
+  }
+
+
+  .Account {
+    display:flex;
+    justify-content:space-around;
+    height: 30px;
+    width: auto;
+  }
+
+  .Account> * {
+    margin-right: 15px;
+  }
+
+  .add {
+    width:50px;
+    background-color: orange;
+    border-color: orange;
+    font-weight: bold;
+
+  }
+
+  .ManageRestText{
+    margin-left: 40px;
+  }
+
+  .manageRestaurantContainer{
+    background-color: #FFD8B4;
+    padding: 20px;
+    padding-bottom: 50px;
+    margin-top: 10px;
+    margin-bottom: 200px;
+    margin-left: 40px;
+    margin-right: 40px;
+    line-height: 30px;
+
+  }
+
+
+  .manageRestaurant {
+    display: flex;
+    justify-content:space-between;
+    
+  }
+
+
+  .inputtextbar{
+    background-color: rgb(207, 204, 204);
+    width: 80%;
+    height: 25px;
+  }
+
+
+  
