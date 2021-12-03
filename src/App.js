@@ -2,7 +2,6 @@ import './App.css';
 import Header from './components/Header.js';
 import Managerfrontpage from './components/Managerfrontpage.js';
 import Footer from './components/Footer.js';
-import SearchbarLocation from './components/SearchbarLocation.js';
 import Errorpage from './components/Errorpage.js';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import Frontpage from './components/Frontpage';
@@ -32,8 +31,7 @@ function App() {
         <Link to='/restaurantinfopage'>Restaurant Info Page</Link> */}
         
         
-      </div>
-      <SearchbarLocation />
+      </div>      
     <Routes>
     <Route path="/" element={<Frontpage/>}/>
     <Route path="/managerfrontpage" element={<Managerfrontpage/>}/>
