@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from './Frontpage.module.css';
 
-function Frontpage() {
+function Frontpage(props) {
   return (
     <div className="App">
       <header className={styles.background}>
 
       <div>
-      <h5>Restaurant frontpage (not logged in)</h5>
+      <h5>User logged status: {props.userLoggedIn ? "is logged in" : "not logged in"} </h5>
             
         </div>
         
