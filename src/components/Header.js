@@ -4,7 +4,7 @@ import { useState } from 'react';
 import LoginPopUp from './Login';
 import ManagerRegisterPopUp from './ManagerRegister.js';
 
-export default function Header() {
+export default function Header(props) {
 
     const [buttonLogin, setButtonLogin] = useState(false);
     const [buttonRegister, setButtonRegister] = useState(false);
@@ -14,9 +14,27 @@ export default function Header() {
         <a href="/"><img className={styles.image} src='olivertwistLogo1.jpg' alt=''/></a>
 
                   <div className={styles.Account}>
-                  <button onClick={() => setButtonLogin(true)}>Log in</button>
-                  
-                  <button onClick={() => setButtonRegister(true)}>Sign up</button>
+
+
+                  {props.userLoggedIn ? 
+                            <>
+                                {/* If user is logged in, render these buttons */}
+                                <button > <a href='/loginpage' > My account</a></button>
+                                <button onClick={props.logout} ><a href='/'> Log out</a></button>
+                            </>
+                            :
+                            <>
+                                {/* If user is not logged in, render these buttons */}
+                                <button > <a href='/loginpage' > Log in</a></button>
+                                <button > <a href='/registerpage' > Sign up</a></button>
+                            </>
+                            }
+
+
+{/*    We will see later if we have time to implement these (popups I mean)    */}         
+
+{/*  <button onClick={() => setButtonLogin(true)}>Log in</button>
+<button onClick={() => setButtonRegister(true)}>Sign up</button> */}
                   </div>
             
         </div>
