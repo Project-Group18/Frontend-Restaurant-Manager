@@ -5,9 +5,8 @@ import Footer from './components/Footer.js';
 import Errorpage from './components/Errorpage.js';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import Frontpage from './components/Frontpage';
-import TempRestManagerList from './components/TempRestManagerList';
 import ManagerAccountPage from './components/ManagerAccountPage';
-import CurrentOrderPage from './components/currentOrders.js';
+import CurrentOrderPage from './components/CurrentOrderPage.js';
 import Registerpage from './components/Registerpage';
 import Loginpage from './components/Loginpage';
 import Payload from './components/Payload.js';
@@ -18,7 +17,6 @@ const jwtFromLocalStorage = window.localStorage.getItem('localStorageJWT');
 function App() {
 
   const [userJWT, setUserJWT] = useState(jwtFromLocalStorage);
-
 
     //routes which are accessable only when user is not logged in
     let accessableRoutes = <>
@@ -35,14 +33,10 @@ function App() {
       accessableRoutes =
     <>
     <Route path="/managerAccountPage"element={<ManagerAccountPage/>}/>
-    <Route path="/currentOrdersPage" element={<CurrentOrderPage/>}/> 
-    <Route path="/restmanagerlist" element={<TempRestManagerList/>}/>
+    <Route path="/currentOrdersPage" element={<CurrentOrderPage jwt={userJWT} />}/> 
     <Route path="/payload" element={<Payload jwt={userJWT} />}/>
     </>
     }
-
-
-
 
   return (
     <div >
@@ -57,14 +51,11 @@ function App() {
       <div style={{ display:"flex", justifyContent: "space-around" }}>
 
       <Link to='/payload'>Payload</Link> 
-        {/* <Link to='/restmanagerlist'>Restaurant manager list</Link> 
         <Link to='/registerpage'>Register page</Link>
         <Link to='/loginpage'>Login page</Link>
          <Link to='/restaurantaccountpage'>Restaurant account page</Link>
-        <Link to='/managerorderhistorypage'>Manager Order History</Link>
-        <Link to='/searchresultpage'>Search Result Page</Link>
-        <Link to='/foodcategoriespage'>Food Categories Page</Link>
-        <Link to='/restaurantinfopage'>Restaurant Info Page</Link> */}
+        <Link to='/currentOrdersPage'>Manager Orderspage</Link>
+        <Link to='/managerfrontpage'>Manager front page</Link>
         
         
       </div>      
