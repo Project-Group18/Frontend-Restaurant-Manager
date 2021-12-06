@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import Frontpage from './components/Frontpage';
 import TempRestManagerList from './components/TempRestManagerList';
 import ManagerAccountPage from './components/ManagerAccountPage';
+import CurrentOrderPage from './components/currentOrders.js';
 import Registerpage from './components/Registerpage';
 import Loginpage from './components/Loginpage';
 import Payload from './components/Payload.js';
@@ -33,6 +34,8 @@ function App() {
     if (userJWT != null) {
       accessableRoutes =
     <>
+    <Route path="/managerAccountPage"element={<ManagerAccountPage/>}/>
+    <Route path="/currentOrdersPage" element={<CurrentOrderPage/>}/> 
     <Route path="/restmanagerlist" element={<TempRestManagerList/>}/>
     <Route path="/payload" element={<Payload jwt={userJWT} />}/>
     </>

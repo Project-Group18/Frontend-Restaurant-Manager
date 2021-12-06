@@ -9,7 +9,16 @@ export default function ManagerAccountPage() {
     const [menuItemPopup, setMenuItemPopup] = useState(false);
     const location = useLocation();
     console.log(location.state)
-
+        {/*Needs a data request from backend*/}
+    const manager = [
+        {
+            manager_name: 'managerSteve',
+            manager_email: 'manager@gmail.com',
+            manager_password: 'password',
+            manager_id: '123',
+            restaurant_id: 'restaurant'
+        }
+    ]
     return (
        <div className="App">
        
@@ -18,14 +27,32 @@ export default function ManagerAccountPage() {
       <div className={styles.Headercontainer}>
                 <div>
 
-                <div key={location.state.manager.manager_id}>Choose customer {location.state.manager.manager_id}</div>
-                <ul>ID: {location.state.manager.customer_id}</ul>
-                <ul>Name: {location.state.manager.manager_name}</ul>
-                <ul>Email: {location.state.manager.manager_email}</ul>
-                <ul>Password: {location.state.manager.manager_password}</ul>
-                <ul>Restaurant ID: {location.state.manager.restaurant_id}</ul>
-                    
-                    </div>
+                
+                {manager.map(element => 
+                <div key={element.manager_id}>
+                <ul>ID: {element.manager_id} </ul>
+                <ul>Name: {element.manager_name}</ul>
+                <input type="text" placeholder={element.manager_name}/>
+                <ul>Email: {element.manager_email}</ul>
+                <input type="text" placeholder={element.manager_email}/>
+                <ul>Password: {element.manager_password}</ul>
+                <input type="text" placeholder={element.manager_password}/>
+                <ul>confirm your new password</ul>
+                <input type="text" placeholder={element.manager_password}/>
+                <ul>Restaurant ID: {element.restaurant_id}</ul> 
+                <input type="text" placeholder={element.restaurant_id}/>
+                
+                <br/>
+                <p>Edit your information into text boxes and click the button to commit changes</p>
+                <button>Edit profile</button>
+                </div>
+                )}
+                
+
+
+
+                
+                </div>
             </div>
 
 
