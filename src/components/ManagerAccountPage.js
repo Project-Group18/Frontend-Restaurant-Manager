@@ -1,9 +1,8 @@
 import React from 'react'
-import styles from './Restaurantaccountpage.module.css'
 import AddMenuItemPopUp from './addMenuItem.js'
 import { useState } from 'react'
 import {useLocation} from 'react-router-dom';
-
+import styles from './ManagerAccountPage.module.css';
 
 export default function ManagerAccountPage() {
     const [menuItemPopup, setMenuItemPopup] = useState(false);
@@ -13,47 +12,55 @@ export default function ManagerAccountPage() {
     const manager = [
         {
             manager_name: 'managerSteve',
-            manager_email: 'manager@gmail.com',
+            manager_email: 'manager@email.com',
             manager_password: 'password',
             manager_id: '123',
             restaurant_id: 'restaurant'
         }
     ]
+   
     return (
        <div className="App">
        
       <h1>You have arrived on the manager account page</h1>  
        
       <div className={styles.Headercontainer}>
-                <div>
+            <div>
 
-                
-                {manager.map(element => 
-                <div key={element.manager_id}>
-                <ul>ID: {element.manager_id} </ul>
-                <ul>Name: {element.manager_name}</ul>
-                <input type="text" placeholder={element.manager_name}/>
-                <ul>Email: {element.manager_email}</ul>
-                <input type="text" placeholder={element.manager_email}/>
-                <ul>Password: {element.manager_password}</ul>
-                <input type="text" placeholder={element.manager_password}/>
-                <ul>confirm your new password</ul>
-                <input type="text" placeholder={element.manager_password}/>
-                <ul>Restaurant ID: {element.restaurant_id}</ul> 
-                <input type="text" placeholder={element.restaurant_id}/>
-                
-                <br/>
-                <p>Edit your information into text boxes and click the button to commit changes</p>
-                <button>Edit profile</button>
+                <div className={styles.accountInfo}>
+                    {manager.map(element => 
+                    <div key={element.manager_id}>
+                    <ul>ID: {element.manager_id} </ul>
+                    <ul>Name: {element.manager_name}</ul>
+                    <ul>Email: {element.manager_email}</ul>
+                    <ul>Password: {element.manager_password}</ul>
+                    
+                    <ul>Restaurant ID: {element.restaurant_id}</ul>
+
+                     <div key={element.id} className={styles.accountEdit}> {/* should we delete this? */}
+                            
+                            <input type="text" placeholder={element.manager_name}/>  <br/>
+                            <input type="text" placeholder={element.manager_email}/><br/>   
+                            <input type="text" placeholder={element.manager_password}/><br/>
+                            <ul>confirm your new password</ul>
+                            <input type="text" placeholder={element.manager_password}/><br/>
+                            <p>Edit your information into text boxes and click the button to commit changes</p>
+                            <button>Edit profile</button>
+                        </div> 
                 </div>
                 )}
-                
-
-
-
-                
                 </div>
+
+               
+                       
+               
             </div>
+
+
+
+                
+            
+</div>
 
 
 

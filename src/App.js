@@ -7,7 +7,7 @@ import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import Frontpage from './components/Frontpage';
 import TempRestManagerList from './components/TempRestManagerList';
 import ManagerAccountPage from './components/ManagerAccountPage';
-import CurrentOrderPage from './components/currentOrders.js';
+import CurrentOrderPage from './components/CurrentOrders.js';
 import Registerpage from './components/Registerpage';
 import Loginpage from './components/Loginpage';
 import Payload from './components/Payload.js';

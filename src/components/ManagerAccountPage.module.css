@@ -1,0 +1,13 @@
+.accountInfo {
+    background-color: #FFD8B4;
+    margin-top: 20px;
+    padding-bottom: 200px;
+    margin-bottom: 200px;
+}
+
+.accountEdit{
+    position: fixed;
+    right: 15%;
+    top: 33%;
+    margin-bottom: 200px;
+}
