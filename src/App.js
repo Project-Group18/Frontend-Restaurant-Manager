@@ -10,14 +10,16 @@ import CurrentOrderPage from './components/CurrentOrderPage.js';
 import Registerpage from './components/Registerpage';
 import Loginpage from './components/Loginpage';
 import Payload from './components/Payload.js';
+import CreateRestaurant from './components/CreateRestaurant.js';
+import jwt from 'jsonwebtoken';
 
 const jwtFromLocalStorage = window.localStorage.getItem('localStorageJWT');
-
 
 function App() {
 
   const [userJWT, setUserJWT] = useState(jwtFromLocalStorage);
 
+    
     //routes which are accessable only when user is not logged in
     let accessableRoutes = <>
       <Route path="/registerpage"element={<Registerpage />}/>  
@@ -35,6 +37,7 @@ function App() {
     <Route path="/managerAccountPage"element={<ManagerAccountPage/>}/>
     <Route path="/currentOrdersPage" element={<CurrentOrderPage jwt={userJWT} />}/> 
     <Route path="/payload" element={<Payload jwt={userJWT} />}/>
+    <Route path="/createRestaurant" element={<CreateRestaurant jwt={userJWT} />}/>
     </>
     }
 
@@ -56,13 +59,14 @@ function App() {
          <Link to='/restaurantaccountpage'>Restaurant account page</Link>
         <Link to='/currentOrdersPage'>Manager Orderspage</Link>
         <Link to='/managerfrontpage'>Manager front page</Link>
+        <Link to='/createRestaurant'>Create a new restaurant</Link>
         
         
       </div>      
     <Routes>
     <Route path="/" element={<Frontpage userLoggedIn={userJWT != null}/>}/>
     <Route path="/managerfrontpage" element={<Managerfrontpage/>}/>
-      <Route path="/*" element={<Errorpage/>}/>
+      <Route path="*" element={<Frontpage/>}/>
       
       <Route path="/manageraccpage" element={<ManagerAccountPage/>}/>
       <Route path="manageraccpage/:params" element={<ManagerAccountPage/>}/>

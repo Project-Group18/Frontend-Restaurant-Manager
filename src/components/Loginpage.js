@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import api from '../api/config_login';
 import { useNavigate } from 'react-router-dom';
+import jwtFromWeb from 'jsonwebtoken';
 
 function Loginpage(props) {
 
@@ -11,7 +12,7 @@ function Loginpage(props) {
         event.preventDefault();
 
         setlogInSetUpState("processing");
-        const customerLogIn =  async () => {
+        const managerLogin =  async () => {
             try {const res = await api.post('', 
             null, 
             {
@@ -28,11 +29,21 @@ function Loginpage(props) {
             const JWToken = res.data.jwt;
             props.login(JWToken);
 
-            setTimeout(() => {
-                navigate('/', {replace: true})
-            }, 1500);
+            const decodedToken = jwtFromWeb.decode(JWToken);
+            //if the user has a restaurant
+            console.log("restid!!!")
+            console.log(decodedToken.user.restid)
 
-                    
+
+            if (decodedToken.user.restid) {
+                setTimeout(() => {
+                    navigate('/', {replace: true})
+                }, 1500)
+            } else {
+            setTimeout(() => {
+                navigate('/createRestaurant', {replace: true})
+            }, 1500)
+            }
                     //resetting navigation history?
                    /*  {state:{
                         email:event.target.email.value
@@ -44,7 +55,7 @@ function Loginpage(props) {
             }
            
             } 
-            customerLogIn();
+            managerLogin();
     }
 
     let logInUIControls = null;

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import api from '../api/config_new.js'
 import { useNavigate } from 'react-router-dom';
 
-function Registerpage() {
+function Registerpage(props) {
 
     const navigate = useNavigate();
     const [ signupProcessState, setSignupProcessState] = useState("idle")
@@ -16,7 +16,7 @@ function Registerpage() {
         console.log(event.target.email.value);
         console.log(event.target.password.value);
 
-        const postManager =  async () => {
+        const createManager =  async () => {
             try {const res = await api.post('/manager', 
                 {
                 manager_email: event.target.email.value,
@@ -26,15 +26,17 @@ function Registerpage() {
                 console.log(res);
                 setSignupProcessState("SignUpSuccessful");
                 /* When the login is successful, the page redirects to the login page */
+                
                 setTimeout(() => {
-                navigate('/loginpage', {replace: true})
-                }, 1500)
+                    navigate('/loginpage', {replace: true})
+                }, 1500);
+
             } catch (error) {
                 console.log(error);
                 setSignupProcessState("SignUpFailed");
             }
             } 
-                postManager();
+                createManager();
             };
 
     let signupUIControls = null;
