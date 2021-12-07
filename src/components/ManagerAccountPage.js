@@ -1,168 +1,125 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import AddMenuItemPopUp from './addMenuItem.js'
-import { useState } from 'react'
 import {useLocation} from 'react-router-dom';
 import styles from './ManagerAccountPage.module.css';
+import jwtFromWeb from 'jsonwebtoken';
+import api from '../api/config_manager';
+import Category from './Category.js';
+import Dishes from './Dishes.js';
 
-export default function ManagerAccountPage() {
-    const [menuItemPopup, setMenuItemPopup] = useState(false);
-    const location = useLocation();
-    console.log(location.state)
+export default function ManagerAccountPage(props) {
+
+    const {jwt} = props;
+    const decodedToken = jwtFromWeb.decode(jwt);
+    const [restaurant, setRestaurant] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [dishes, setDishes] = useState([]);
+
+
+
         {/*Needs a data request from backend*/}
-    const manager = [
-        {
-            manager_name: 'managerSteve',
-            manager_email: 'manager@email.com',
-            manager_password: 'password',
-            manager_id: '123',
-            restaurant_id: 'restaurant'
-        }
-    ]
+
+
+        //get restaurant with managerid
+        useEffect(() => {
+            const loadRestaurantWithJWT =  async () => {
+            try {const res = await api.get('/getRestaurant/'+decodedToken.user.id.toString(),
+            {
+                headers: {
+                    'Authorization': 'Bearer ' +jwt
+                }
+            }
+            );
+            console.log(res);
+            setRestaurant(res.data)
+            } catch (err) {//Not in 200 response range
+                console.log(err);
+            }}
+            loadRestaurantWithJWT();
+        }, [])
+
+        //get categories with restaurant id
+        useEffect(() => {
+            const loadCategoriesWithJWT =  async () => {
+            try {const res = await api.get('/getCategories/'+decodedToken.user.restid.toString(),
+            {
+                headers: {
+                    'Authorization': 'Bearer ' +jwt
+                }
+            }
+            );
+            console.log(res);
+            setCategories(res.data)
+            } catch (err) {//Not in 200 response range
+                console.log(err);
+            }}
+            loadCategoriesWithJWT();
+        }, [])
+
+        //get dishes with restaurant id
+        useEffect(() => {
+            const loadDishesWithJWT =  async () => {
+            try {const res = await api.get('/getDishes/'+decodedToken.user.restid.toString(),
+            {
+                headers: {
+                    'Authorization': 'Bearer ' +jwt
+                }
+            }
+            );
+            console.log(res);
+            setDishes(res.data)
+            } catch (err) {//Not in 200 response range
+                console.log(err);
+            }}
+            loadDishesWithJWT();
+        }, [])
+
    
     return (
-       <div className="App">
+
+<div>
+
        
       <h1>You have arrived on the manager account page</h1>  
-       
-      <div className={styles.Headercontainer}>
-            <div>
-
-                <div className={styles.accountInfo}>
-                    {manager.map(element => 
-                    <div key={element.manager_id}>
-                    <ul>ID: {element.manager_id} </ul>
-                    <ul>Name: {element.manager_name}</ul>
-                    <ul>Email: {element.manager_email}</ul>
-                    <ul>Password: {element.manager_password}</ul>
-                    
-                    <ul>Restaurant ID: {element.restaurant_id}</ul>
-
-                     <div key={element.id} className={styles.accountEdit}> {/* should we delete this? */}
-                            
-                            <input type="text" placeholder={element.manager_name}/>  <br/>
-                            <input type="text" placeholder={element.manager_email}/><br/>   
-                            <input type="text" placeholder={element.manager_password}/><br/>
-                            <ul>confirm your new password</ul>
-                            <input type="text" placeholder={element.manager_password}/><br/>
-                            <p>Edit your information into text boxes and click the button to commit changes</p>
-                            <button>Edit profile</button>
-                        </div> 
-                </div>
-                )}
-                </div>
-
-               
-                       
-               
-            </div>
-
-
-
-                
             
-</div>
-
-
-
-
-       
-        {/*  <header className={styles.background}>
-  
-        <div >
-
             <div className={styles.Headercontainer}>
-                <div>
-                    <p>Restaurant Manager Name:</p>
-                    <p>Restaurant Manager Email:</p><br></br>
-                    <p>Manage current order</p>
-                    <p>Browse past order</p>
-                    <br></br>
-                    <p>
-                    <form onSubmit>
-                        <label>
-                            Add new menu catergory:
-                            <select className={styles.inputtextbar}>
-                                <option>Pizza</option>
-                                <option>Lime</option>
-                                <option>Coconut</option>
-                                <option>Mango</option>
-                            </select>
-                        </label>
-                        <input className={styles.add} type="submit" value="Add" />
-                    </form>
-                    </p>
-                    <input className={styles.catergoryAdd} type="text" placeholder="Add new catergory (max. 12)" />
-                    <button> Add catergory</button>
-                    
-                    <br/>
-                    <button onClick={() => setMenuItemPopup(true)}>Add new dish</button>
+                    <div className={styles.accountInfo}>
+                        <h2>Customer information:</h2>
+                        <ul>ID: {decodedToken.user.id} </ul>
+                        <ul>Name: {decodedToken.user.name} </ul>
+                        <ul>Email: {decodedToken.user.email}</ul>
+                        <ul>Restaurant ID: {decodedToken.restid}</ul>
                     </div>
-                <div>Edit Profile</div>
             </div>
-            <div className={styles.ManageRestText}>Manage Restaurant</div>
-            <div className={styles.manageRestaurantContainer}>
-                    <div className={styles.manageRestaurant}>
-                            <div>
-                                <div>Restaurants Name</div>
-                                <input className={styles.inputtextbar} type="searchtext" placeholder= "Enter restaurant's name"></input>
-                                <div>
-                                    <p>
-                                        <label>
-                                            Restaurant Type:
-                                            <select className={styles.inputtextbar}>
-                                                <option>Fast Food</option>
-                                                <option>Fine Dining</option>
-                                                <option>Casual Dining</option>
-                                                <option>Casual Dining</option>
-                                                <option>Chinese</option>
-                                            </select>
-                                        </label>
-                                    </p>
-                                </div>
-                                <div>
-                                    <div>Opening Hours</div>
-                                    <input className={styles.inputtextbar} type="inputtext" placeholder= "input opening hours"></input>
-                                </div>
-                                <div>
-                                    <div>Manager's name and phone number</div>
-                                        <input className={styles.inputtextbar} type="inputtext" placeholder= "Name and number" required></input>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <p>
-                                        <label>
-                                                Price Level:
-                                                <select className={styles.inputtextbar}>
-                                                    <option>€</option>
-                                                    <option>€€</option>
-                                                    <option>€€€</option>
-                                                    <option>€€€€</option>
-                                                    <option>€€€€€</option>
-                                                </select>
-                                        </label>
-                                    </p>
-                                </div>
-                                <div>
-                                    <div>Address</div>
-                                    <input className={styles.inputtextbar} type="text" id="address" placeholder="Type in restaurant address"></input>
-                                </div>
-                            
-                            </div>
-                        <div>
-                            Image of Restaurant or logo.
-                        </div>
-                                
-                    </div>
-                    <br></br>
-                    <input className={styles.add} type="submit" value="Save" />
-                    
-            </div>
-                
   
-          </div>
-        </header> */}
+        <h2>My restaurant:</h2>           
+    
+        <div className={styles.accountInfo}>
 
-      </div>
+        {restaurant.map(restaurantElement=>
+            <div >
+                <ul>ID: {restaurantElement.restaurant_id}</ul>
+                <ul>Name: {restaurantElement.restaurant_name}</ul>
+                <ul>Type: {restaurantElement.restaurant_type}</ul>
+                <ul>Hours: {restaurantElement.open_hours}</ul>
+                <ul>Price level: {restaurantElement.price_level}</ul>
+                <ul>Location: {restaurantElement.location}</ul>
+            </div>
+            )}
+        </div>
+
+        
+            <div className={styles.accountInfo}>
+                        <Category categories={categories} jwt={jwt}/>
+            </div>
+
+
+            <div className={styles.accountInfo}>
+                        <Dishes dishes={dishes} categories={categories} jwt={jwt}/>
+            </div>
+
+  
+        </div>
+
     )
 }
