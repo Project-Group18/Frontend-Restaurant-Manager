@@ -65,10 +65,16 @@ export default function CurrentOrderPage(props) {
    
     return (
        <div className="App">
-       
-      <h1>Current orders</h1>  
-       
-      <div className={styles.Headercontainer}>
+       <h1>Current order page</h1> 
+      
+
+
+      <h3 >{orders.length === 0 && <div>No current orders</div>}</h3>
+
+
+            {orders.length > 0 &&  
+            <div className={styles.Headercontainer}>
+                 
                 <div>
                 {orders.map(orderElement =>
                 <form key={orderElement.order_id} onSubmit={handleUpdate}>
@@ -83,6 +89,8 @@ export default function CurrentOrderPage(props) {
                         const selectedState=e.target.value;
                         setDropMenu(selectedState);
                         }}>
+                        
+                        <option value="--"> -- </option>
                         <option value="Preparing"> Preparing </option>
                         <option value="Ready for delivery"> Ready for delivery</option>
                         <option value="Delivering"> Delivering</option>
@@ -94,7 +102,7 @@ export default function CurrentOrderPage(props) {
                 )}
                 </div>
             </div>
-
+            }
 
       </div>
     )
