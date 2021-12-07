@@ -1,32 +1,66 @@
 import React from 'react'
-import styles from './Restaurantaccountpage.module.css'
 import AddMenuItemPopUp from './addMenuItem.js'
 import { useState } from 'react'
 import {useLocation} from 'react-router-dom';
-
+import styles from './ManagerAccountPage.module.css';
 
 export default function ManagerAccountPage() {
     const [menuItemPopup, setMenuItemPopup] = useState(false);
     const location = useLocation();
     console.log(location.state)
-
+        {/*Needs a data request from backend*/}
+    const manager = [
+        {
+            manager_name: 'managerSteve',
+            manager_email: 'manager@email.com',
+            manager_password: 'password',
+            manager_id: '123',
+            restaurant_id: 'restaurant'
+        }
+    ]
+   
     return (
        <div className="App">
        
       <h1>You have arrived on the manager account page</h1>  
        
       <div className={styles.Headercontainer}>
-                <div>
+            <div>
 
-                <div key={location.state.manager.manager_id}>Choose customer {location.state.manager.manager_id}</div>
-                <ul>ID: {location.state.manager.customer_id}</ul>
-                <ul>Name: {location.state.manager.manager_name}</ul>
-                <ul>Email: {location.state.manager.manager_email}</ul>
-                <ul>Password: {location.state.manager.manager_password}</ul>
-                <ul>Restaurant ID: {location.state.manager.restaurant_id}</ul>
+                <div className={styles.accountInfo}>
+                    {manager.map(element => 
+                    <div key={element.manager_id}>
+                    <ul>ID: {element.manager_id} </ul>
+                    <ul>Name: {element.manager_name}</ul>
+                    <ul>Email: {element.manager_email}</ul>
+                    <ul>Password: {element.manager_password}</ul>
                     
-                    </div>
+                    <ul>Restaurant ID: {element.restaurant_id}</ul>
+
+                     <div key={element.id} className={styles.accountEdit}> {/* should we delete this? */}
+                            
+                            <input type="text" placeholder={element.manager_name}/>  <br/>
+                            <input type="text" placeholder={element.manager_email}/><br/>   
+                            <input type="text" placeholder={element.manager_password}/><br/>
+                            <ul>confirm your new password</ul>
+                            <input type="text" placeholder={element.manager_password}/><br/>
+                            <p>Edit your information into text boxes and click the button to commit changes</p>
+                            <button>Edit profile</button>
+                        </div> 
+                </div>
+                )}
+                </div>
+
+               
+                       
+               
             </div>
+
+
+
+                
+            
+</div>
 
 
 

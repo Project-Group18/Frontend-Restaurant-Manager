@@ -3,6 +3,7 @@ import styles from './Header.module.css'
 import { useState } from 'react';
 import LoginPopUp from './Login';
 import ManagerRegisterPopUp from './ManagerRegister.js';
+import CurrentOrderPage from './CurrentOrders';
 
 export default function Header(props) {
 
@@ -19,8 +20,11 @@ export default function Header(props) {
                   {props.userLoggedIn ? 
                             <>
                                 {/* If user is logged in, render these buttons */}
-                                <button > <a href='/loginpage' > My account</a></button>
+                                <button><a href='/currentOrdersPage' > Current orders </a></button>
+                                <button > <a href='/managerAccountPage' > My account</a></button>
                                 <button onClick={props.logout} ><a href='/'> Log out</a></button>
+                                
+
                             </>
                             :
                             <>
