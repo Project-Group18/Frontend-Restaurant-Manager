@@ -9,9 +9,6 @@ function Payload(props) {
 
     return (
         <div>
-            
-
-
             <div> <h4>User info:</h4>
                User Id: {decodedToken.user.id} <br/>
                 User email {decodedToken.user.email} <br/>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
-import Errorpage from './components/Errorpage.js';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import Frontpage from './components/Frontpage';
 import ManagerAccountPage from './components/ManagerAccountPage';
@@ -33,7 +32,7 @@ function App() {
     if (userJWT != null) {
       accessableRoutes =
     <>
-    <Route path="/managerAccountPage"element={<ManagerAccountPage/>}/>
+    <Route path="/managerAccountPage"element={<ManagerAccountPage jwt={userJWT} />}/>
     <Route path="/currentOrdersPage" element={<CurrentOrderPage jwt={userJWT} />}/> 
     <Route path="/payload" element={<Payload jwt={userJWT} />}/>
     
