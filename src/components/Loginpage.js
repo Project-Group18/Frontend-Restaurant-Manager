@@ -35,15 +35,10 @@ function Loginpage(props) {
             console.log(decodedToken.user.restid)
 
 
-            if (decodedToken.user.restid) {
-                setTimeout(() => {
-                    navigate('/', {replace: true})
-                }, 1500)
-            } else {
+        
             setTimeout(() => {
-                navigate('/createRestaurant', {replace: true})
+                navigate('/', {replace: true})
             }, 1500)
-            }
                     //resetting navigation history?
                    /*  {state:{
                         email:event.target.email.value

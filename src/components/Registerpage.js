@@ -28,7 +28,7 @@ function Registerpage(props) {
                 /* When the login is successful, the page redirects to the login page */
                 
                 setTimeout(() => {
-                    navigate('/loginpage', {replace: true})
+                    navigate('/createRestaurant', {state: {id: event.target.email.value}}, {replace: true})
                 }, 1500);
 
             } catch (error) {

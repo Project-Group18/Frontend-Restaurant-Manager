@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import api from '../api/config_manager';
+import React, { useState, useEffect } from 'react'
+import api from '../api/config';
 import jwtFromWeb from 'jsonwebtoken';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function CreateRestaurant(props) {
 
@@ -11,25 +11,35 @@ function CreateRestaurant(props) {
     const [type, setType] = useState([]);
     const [openHours, setOpenHours] = useState([]);
     const [pricelvl, setPricelvl] = useState([]);
+    const [managerid, setManagerid] = useState([]);
+    let location = useLocation();
 
+
+    console.log("email FROM REGISTER PAGE!!!!")
+    console.log(location.state.id)
 
     //we cannot use the jwt for the manager id because this appears right after register page
     // get manager id with manager email
-    /* useEffect(() => {
-        const loadManagersWithJWT =  async () => {
-        try {const res = await api.post('/managers',
+    useEffect(() => {
+        const managerIDWithEmail =  async () => {
+        try {const res = await api.post('managerid/email',
         {
-            
-           
+            manager_email: location.state.id
         }
         );
+        console.log("id by email:")
         console.log(res);
-        seManager(res.data)
+        console.log("res data")
+        console.log(res.data)
+        console.log("res data")
+        console.log(res.data[0].manager_id)
+        setManagerid(res.data[0].manager_id)
+       
         } catch (err) {//Not in 200 response range
             console.log(err);
         }}
-        loadManagersWithJWT();
-    }, []) */
+        managerIDWithEmail();
+    }, [])
 
 
     const handleCreation = (event) => {
@@ -44,18 +54,13 @@ function CreateRestaurant(props) {
                     price_level: pricelvl,
                     location: event.target.location.value,
                     /* restaurant_picture: event.target.name.value, */
-                    manager_id: decodedToken.user.id                 
-                },
-                {
-                    headers: {
-                    'Authorization': 'Bearer ' +jwt
-                    }
-                } 
+                    manager_id: managerid                 
+                }
                 );
                 console.log("Create restaurant response:")
                 console.log(res); 
                 setTimeout(() => {
-                navigate('/', {replace: true})
+                navigate('/loginpage', {replace: true})
                 }, 1500)
             } catch (error) {
                 console.log(error);
