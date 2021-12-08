@@ -1,4 +1,5 @@
 .accountInfo {
+    display:flex;
     background-color: #FFD8B4;
     margin-top: 20px;
     padding-bottom: 40px;
@@ -7,6 +8,8 @@
     border-width: 1px;
     border-color: black;
     border-radius: 14px;
+    gap: 400px;
+    align-items:flex-start;
 }
 .background{
     margin-left: 40px;
@@ -14,4 +17,11 @@
 }
 .heading{
     margin-left: 40px;
+}
+
+
+.restaurant{
+    display:flex;
+    gap: 150px;
+    align-items:flex-start;
 }

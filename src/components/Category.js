@@ -41,7 +41,7 @@ function Category(props) {
 
     return (
         <div>
-            <h2 className={styles.heading}>These are your categories:</h2>
+            <h2 className={styles.heading}>Menu categories</h2>
 
 
 
@@ -51,7 +51,7 @@ function Category(props) {
                     </div>
                             )}
 
-        <h3 className={styles.heading}>Create a new category:</h3>
+        <h3 className={styles.heading}>Create a new category</h3>
             <form onSubmit={categoryHandler}>
                 <ul><input style={{width: "190px"}} type="text" name="category" placeholder="Enter name of new category"></input></ul>
                 <ul><button type="submit">Submit</button></ul>

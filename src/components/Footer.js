@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from './Footer.module.css'
-import LoginPopUp from './Login';
-import ManagerRegisterPopUp from './ManagerRegister.js';
+
 import { useState } from 'react';
 
 export default function Footer() {
@@ -16,7 +15,7 @@ export default function Footer() {
           <p>Terms of service</p>
           <p>Contact us</p>
           <p>About us</p>
-          <p className={styles.restaurantLogin} onClick={() => setButtonPopup(true)}>For restaurants</p>
+          <p >For restaurants</p>
 
           <div className={styles.socialmedia}>
           <i class="fab fa-facebook"></i>
@@ -26,8 +25,7 @@ export default function Footer() {
         </div>
 
       </footer>
-      <ManagerRegisterPopUp trigger={buttonPopup} setTrigger ={setButtonPopup}/>
-      <LoginPopUp trigger ={buttonLogin} setTrigger ={setButtonLogin}/>
+
       
         </div>
     )

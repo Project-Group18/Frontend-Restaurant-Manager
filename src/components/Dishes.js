@@ -65,22 +65,9 @@ function Dishes(props) {
 
     return (
         <div>
-           <h2 className={styles.heading}>These are your dishes:</h2>
-           {dishes.map(d => 
-                    <div key={d.dish_id}>
-                    <ul>ID: {d.dish_id}</ul>
-                    <ul>Name: {d.dish_name}</ul>
-                    <ul><Image style={{width: '300px'}} cloudName="dczwvybll"
-                    publicId={d.dish_picture}/></ul>
-                    <ul>Price: {d.price}€</ul>
-                    <ul>Category ID: {d.category_id}</ul>
-                    <ul>Info: {d.dish_info}</ul>
-                    <hr/>
-                    </div>
-                            )}
-
-
-            <h3 className={styles.heading}>Create a new dish:</h3>
+            <div className={styles.accountInfo}>
+            <div>
+            <h2 className={styles.heading}>Create a new dish</h2>
             <form onSubmit={dishHandler}>
                 <ul>Dish name</ul>
                 <ul><input style={{width: "190px"}} type="text" name="name" placeholder="Enter name of new dish"></input></ul>
@@ -100,7 +87,7 @@ function Dishes(props) {
                     </select></ul>
                
 
-                <h4 className={styles.heading}>Add a picture for the dish:</h4>
+                <h4 className={styles.heading}>Add a picture of the dish:</h4>
 
 
                 <input className={styles.heading} type="file" onChange={(event) => {
@@ -125,19 +112,25 @@ function Dishes(props) {
 
                 
             </form>
-
-            
-            
-
-
-
-
-
-               
-
-                    
-                   
-
+            </div>
+            <div>
+            <h2 className={styles.heading}>These are your dishes:</h2>
+            <div className={styles.scrolldiv}>
+           {dishes.map(d => 
+                    <div key={d.dish_id}>
+                    <ul>ID: {d.dish_id}</ul>
+                    <ul>Name: {d.dish_name}</ul>
+                    <ul><Image style={{width: '300px'}} cloudName="dczwvybll"
+                    publicId={d.dish_picture}/></ul>
+                    <ul>Price: {d.price}€</ul>
+                    <ul>Category ID: {d.category_id}</ul>
+                    <ul>Info: {d.dish_info}</ul>
+                    <hr/>
+                    </div>
+                            )} 
+            </div>
+            </div>
+            </div>
         </div>
     )
 }
