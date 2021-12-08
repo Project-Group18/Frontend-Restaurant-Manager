@@ -37,16 +37,7 @@ export default function ManagerAccountPage() {
                     
                     <ul>Restaurant ID: {element.restaurant_id}</ul>
 
-                     <div key={element.id} className={styles.accountEdit}> {/* should we delete this? */}
-                            
-                            <input type="text" placeholder={element.manager_name}/>  <br/>
-                            <input type="text" placeholder={element.manager_email}/><br/>   
-                            <input type="text" placeholder={element.manager_password}/><br/>
-                            <ul>confirm your new password</ul>
-                            <input type="text" placeholder={element.manager_password}/><br/>
-                            <p>Edit your information into text boxes and click the button to commit changes</p>
-                            <button>Edit profile</button>
-                        </div> 
+                    
                 </div>
                 )}
                 </div>

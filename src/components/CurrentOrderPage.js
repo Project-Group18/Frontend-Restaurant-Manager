@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import styles from './Restaurantaccountpage.module.css'
+import styles from './CurrentOrders.module.css'
 import { useState } from 'react'
 import api from '../api/config_manager';
 import jwtFromWeb from 'jsonwebtoken';
@@ -79,17 +79,20 @@ export default function CurrentOrderPage(props) {
                     <ul>Customer ID: {orderElement.customer_id}</ul>
                     <ul>Restaurant ID: <input style={{width:'30px'}} name='restaurantid' value={orderElement.restaurant_id}/></ul>
 
-                    <select name="orderStatus" onChange={(e) =>{
-                        const selectedState=e.target.value;
-                        setDropMenu(selectedState);
-                        }}>
-                        <option value="Preparing"> Preparing </option>
-                        <option value="Ready for delivery"> Ready for delivery</option>
-                        <option value="Delivering"> Delivering</option>
-                    </select>
+                    
+                    <div className={styles.status}>
+                        <select name="orderStatus" onChange={(e) =>{
+                            const selectedState=e.target.value;
+                            setDropMenu(selectedState);
+                            }}>
+                            <option value="Preparing"> Preparing </option>
+                            <option value="Ready for delivery"> Ready for delivery</option>
+                            <option value="Delivering"> Delivering</option>
+                        </select>
 
-                    <button type='submit' >Update order</button>
+                        <button type='submit' >Update order</button>
                     <hr/>
+                    </div>
                 </form>
                 )}
                 </div>
