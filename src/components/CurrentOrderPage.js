@@ -65,10 +65,16 @@ export default function CurrentOrderPage(props) {
    
     return (
        <div className="App">
-       
-      <h1>Current orders</h1>  
-       
-      <div className={styles.Headercontainer}>
+       <h1>Current order page</h1> 
+      
+
+
+      <h3 >{orders.length === 0 && <div>No current orders</div>}</h3>
+
+
+            {orders.length > 0 &&  
+            <div className={styles.Headercontainer}>
+                 
                 <div>
                 {orders.map(orderElement =>
                 <form key={orderElement.order_id} onSubmit={handleUpdate}>
@@ -79,25 +85,28 @@ export default function CurrentOrderPage(props) {
                     <ul>Customer ID: {orderElement.customer_id}</ul>
                     <ul>Restaurant ID: <input style={{width:'30px'}} name='restaurantid' value={orderElement.restaurant_id}/></ul>
 
-                    
-                    <div className={styles.status}>
-                        <select name="orderStatus" onChange={(e) =>{
-                            const selectedState=e.target.value;
-                            setDropMenu(selectedState);
-                            }}>
-                            <option value="Preparing"> Preparing </option>
-                            <option value="Ready for delivery"> Ready for delivery</option>
-                            <option value="Delivering"> Delivering</option>
-                        </select>
+
+                    <select name="orderStatus" onChange={(e) =>{
+                        const selectedState=e.target.value;
+                        setDropMenu(selectedState);
+                        }}>
+                        
+                        <option value="--"> -- </option>
+                        <option value="Preparing"> Preparing </option>
+                        <option value="Ready for delivery"> Ready for delivery</option>
+                        <option value="Delivering"> Delivering</option>
+                    </select>
+
 
                         <button type='submit' >Update order</button>
                     <hr/>
-                    </div>
+                 
                 </form>
-                )}
+                )}  
+                 </div>
                 </div>
-            </div>
-
+            
+            }
 
       </div>
     )
