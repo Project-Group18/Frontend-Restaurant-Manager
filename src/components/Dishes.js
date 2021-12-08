@@ -1,12 +1,30 @@
 import React, {useState} from 'react'
 import api from '../api/config_manager';
 import jwtFromWeb from 'jsonwebtoken';
+import axios from 'axios';
+import {Image} from 'cloudinary-react'
 
 function Dishes(props) {
 
-    const{jwt, dishes, categories} = props;
+    const{jwt, dishes, categories, restaurant} = props;
     const decodedToken = jwtFromWeb.decode(jwt);
     const [categoryType, setCategoryType] = useState([]);
+
+    const [imageSelected, setImageSelected] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
+    
+
+    const uploadImage = (files) => {
+        const formData = new FormData()
+        formData.append("file", files[0])
+        formData.append("upload_preset", "uploadPreset2021")
+        axios.post("https://api.cloudinary.com/v1_1/dczwvybll/image/upload", formData)
+        .then((response) =>{
+        console.log(response);
+        console.log("res.data.url")
+        setImageUrl(response.data.url)
+        });
+    };
 
     const dishHandler = (event) => {
         event.preventDefault();
@@ -21,6 +39,7 @@ function Dishes(props) {
                 dish_name: event.target.name.value,
                 price: event.target.price.value,
                 category_id: categoryType,
+                dish_picture: imageUrl,
                 dish_info: event.target.dishinfo.value,
                 restaurant_id: decodedToken.user.restid
             },
@@ -32,7 +51,9 @@ function Dishes(props) {
             );
             console.log(res);
             //forces component to refresh the page
-            window.location.reload(false);
+            /* window.location.reload(false); */
+            setImageSelected("")
+            setImageUrl("");
                     
             } catch (error) {
                console.log(error)
@@ -44,13 +65,15 @@ function Dishes(props) {
     return (
         <div>
            <h2>These are your dishes:</h2>
-           {dishes.map(dish => 
-                    <div key={dish.dish_id}>
-                    <ul>ID: {dish.dish_id}</ul>
-                    <ul>Name: {dish.dish_name}</ul>
-                    <ul>Price: {dish.price}</ul>
-                    <ul>Category ID: {dish.category_id}</ul>
-                    <ul>Info: {dish.dish_info}</ul>
+           {dishes.map(d => 
+                    <div key={d.dish_id}>
+                    <ul>ID: {d.dish_id}</ul>
+                    <ul>Name: {d.dish_name}</ul>
+                    <ul><Image style={{width: '300px'}} cloudName="dczwvybll"
+                    publicId={d.dish_picture}/></ul>
+                    <ul>Price: {d.price}€</ul>
+                    <ul>Category ID: {d.category_id}</ul>
+                    <ul>Info: {d.dish_info}</ul>
                     <hr/>
                     </div>
                             )}
@@ -64,7 +87,6 @@ function Dishes(props) {
                 <ul><input style={{width: "190px"}} type="text" name="price" placeholder="Enter price of new dish"></input></ul>
                 <ul>Information about the dish</ul>
                 <ul><input style={{width: "190px"}} type="text" name="dishinfo" placeholder="Enter information of new dish"></input></ul>
-
             
                     <ul><select name="categorytype" onChange={(e) =>{
                         const selectedState=e.target.value;
@@ -77,9 +99,43 @@ function Dishes(props) {
                     </select></ul>
                
 
-                <ul><button type="submit">Submit</button></ul>
+                <h4>Add a picture for the dish:</h4>
+
+
+                <input type="file" onChange={(event) => {
+                uploadImage(event.target.files)
+                }}
+                />
+               
+
+
+
+                    <div >
+                    {imageSelected === "" ? 
+                    <>
+                    <ul><button type="submit">Submit</button></ul>
+                    </>
+                    :
+                    <>
+                    <h4>Wait for the image to upload</h4>
+                    </>
+                    }
+                    </div>
+
+                
             </form>
 
+            
+            
+
+
+
+
+
+               
+
+                    
+                   
 
         </div>
     )

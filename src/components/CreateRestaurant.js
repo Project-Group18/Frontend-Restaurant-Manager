@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import api from '../api/config';
 import jwtFromWeb from 'jsonwebtoken';
 import { useNavigate, useLocation } from 'react-router-dom';
+import {Image} from 'cloudinary-react'
+import axios from 'axios'
 
 function CreateRestaurant(props) {
 
@@ -14,9 +16,23 @@ function CreateRestaurant(props) {
     const [managerid, setManagerid] = useState([]);
     let location = useLocation();
 
+    const [imageSelected, setImageSelected] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
 
-    console.log("email FROM REGISTER PAGE!!!!")
-    console.log(location.state.id)
+    const uploadImage = (files) => {
+        const formData = new FormData()
+        formData.append("file", files[0])
+        formData.append("upload_preset", "uploadPreset2021")
+        axios.post("https://api.cloudinary.com/v1_1/dczwvybll/image/upload", formData)
+        .then((response) =>{
+        console.log(response);
+        console.log("res.data.url")
+        setImageUrl(response.data.url)
+        });
+    };
+
+
+
 
     //we cannot use the jwt for the manager id because this appears right after register page
     // get manager id with manager email
@@ -53,12 +69,14 @@ function CreateRestaurant(props) {
                     open_hours: openHours,
                     price_level: pricelvl,
                     location: event.target.location.value,
-                    /* restaurant_picture: event.target.name.value, */
+                    restaurant_picture: imageUrl,
                     manager_id: managerid                 
                 }
                 );
                 console.log("Create restaurant response:")
                 console.log(res); 
+                setImageUrl("")
+                setImageSelected("")
                 setTimeout(() => {
                 navigate('/loginpage', {replace: true})
                 }, 1500)
@@ -113,10 +131,26 @@ function CreateRestaurant(props) {
                 </select>
                 <p>*Restaurant address</p>
                     <input type='text' name='location'></input>
-                {/*  <p>Restaurant picture</p>
-                <input type='text' name='img'></input> */}
-                    <br/>
-                <button type="submit">Submit</button>
+                <p>*Restaurant picture</p> 
+                <input type="file" onChange={(event) => {
+                uploadImage(event.target.files)
+                }}
+                />
+            <br/>
+                <div >
+                    {imageSelected === "" ? 
+                    <>
+                    <ul><button type="submit">Submit</button></ul>
+                    </>
+                    :
+                    <>
+                    <h4>Wait for the image to upload</h4>
+                    </>
+                    }
+                </div>
+
+
+                
             </form>
         </div>
     )
