@@ -6,6 +6,7 @@ import jwtFromWeb from 'jsonwebtoken';
 import api from '../api/config_manager';
 import Category from './Category.js';
 import Dishes from './Dishes.js';
+import {Image} from 'cloudinary-react'
 
 export default function ManagerAccountPage(props) {
 
@@ -14,9 +15,6 @@ export default function ManagerAccountPage(props) {
     const [restaurant, setRestaurant] = useState([]);
     const [categories, setCategories] = useState([]);
     const [dishes, setDishes] = useState([]);
-
-
-
 
 
 
@@ -97,13 +95,19 @@ export default function ManagerAccountPage(props) {
         <div className={styles.accountInfo}>
 
         {restaurant.map(restaurantElement=>
-            <div >
+            <div key={restaurantElement.restaurant_id}>
                 <ul>ID: {restaurantElement.restaurant_id}</ul>
                 <ul>Name: {restaurantElement.restaurant_name}</ul>
                 <ul>Type: {restaurantElement.restaurant_type}</ul>
                 <ul>Hours: {restaurantElement.open_hours}</ul>
                 <ul>Price level: {restaurantElement.price_level}</ul>
                 <ul>Location: {restaurantElement.location}</ul>
+                <ul>Restaurant picture:</ul>
+                <ul>
+                <Image style={{width: '300px'}} cloudName="dczwvybll"
+                publicId={restaurantElement.restaurant_picture}/>
+                </ul>
+                
             </div>
             )}
         </div>
@@ -115,7 +119,7 @@ export default function ManagerAccountPage(props) {
 
 
             <div className={styles.accountInfo}>
-                        <Dishes dishes={dishes} categories={categories} jwt={jwt}/>
+                        <Dishes dishes={dishes} categories={categories} jwt={jwt} restaurant={restaurant}/>
             </div>
 
   

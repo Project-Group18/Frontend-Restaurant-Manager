@@ -35,7 +35,6 @@ function App() {
     <Route path="/managerAccountPage"element={<ManagerAccountPage jwt={userJWT} />}/>
     <Route path="/currentOrdersPage" element={<CurrentOrderPage jwt={userJWT} />}/> 
     <Route path="/payload" element={<Payload jwt={userJWT} />}/>
-    
     </>
     }
 
