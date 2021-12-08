@@ -75,14 +75,14 @@ export default function ManagerAccountPage(props) {
    
     return (
 
-<div>
+<div className={styles.background}>
 
        
-      <h1>You have arrived on the manager account page</h1>  
+      <h1>My account</h1>  
             
             <div className={styles.Headercontainer}>
                     <div className={styles.accountInfo}>
-                        <h2>Customer information:</h2>
+                        <h2 className={styles.heading}>Profile</h2>
                         <ul>ID: {decodedToken.user.id} </ul>
                         <ul>Name: {decodedToken.user.name} </ul>
                         <ul>Email: {decodedToken.user.email}</ul>
@@ -90,10 +90,10 @@ export default function ManagerAccountPage(props) {
                     </div>
             </div>
   
-        <h2>My restaurant:</h2>           
+                   
     
         <div className={styles.accountInfo}>
-
+        <h2 className={styles.heading}>My restaurant:</h2>
         {restaurant.map(restaurantElement=>
             <div key={restaurantElement.restaurant_id}>
                 <ul>ID: {restaurantElement.restaurant_id}</ul>

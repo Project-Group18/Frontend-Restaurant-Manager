@@ -4,10 +4,9 @@ import styles from './Frontpage.module.css';
 function Frontpage(props) {
   return (
     <div className="App">
-      <header className={styles.background}>
+      <header>
 
       <div>
-      <h5>User logged in status: {props.userLoggedIn ? "logged in" : "logged out"} </h5>
             
         </div>
 
@@ -15,14 +14,14 @@ function Frontpage(props) {
           {props.userLoggedIn ? 
             <>
               {/* If user is logged in, render these buttons */}
-              <h1>Choose your next action from the top bars</h1>
-              <a><img src='restaurant-manager-picture.jpg' alt=''/></a>
+              <h1 className={styles.background}>Choose your next action from the top bars</h1>
+              <a><img className={styles.image} src='restaurant-manager-picture.jpg' alt=''/></a>
             </>
             :
             <>
               {/* If user is not logged in, render these buttons */}
-              <h3>Join our service to make people find your restaurant</h3>
-              <a><img src='restaurant-manager-picture.jpg' alt=''/></a>
+              <h2>Join our service to make people find your restaurant</h2>
+              <a><img className={styles.image} src='restaurant-manager-picture.jpg' alt=''/></a>
             </>
           }
         </div>

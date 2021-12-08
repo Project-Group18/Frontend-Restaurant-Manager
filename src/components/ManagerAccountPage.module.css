@@ -1,10 +1,17 @@
 .accountInfo {
     background-color: #FFD8B4;
     margin-top: 20px;
-    padding-bottom: 200px;
-    margin-bottom: 200px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
     border-style: solid;
     border-width: 1px;
     border-color: black;
     border-radius: 14px;
+}
+.background{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.heading{
+    margin-left: 40px;
 }

@@ -1,3 +1,4 @@
+import styles from './Dishes.module.css';
 import React, {useState} from 'react'
 import api from '../api/config_manager';
 import jwtFromWeb from 'jsonwebtoken';
@@ -51,7 +52,7 @@ function Dishes(props) {
             );
             console.log(res);
             //forces component to refresh the page
-            /* window.location.reload(false); */
+            window.location.reload(false);
             setImageSelected("")
             setImageUrl("");
                     
@@ -64,7 +65,7 @@ function Dishes(props) {
 
     return (
         <div>
-           <h2>These are your dishes:</h2>
+           <h2 className={styles.heading}>These are your dishes:</h2>
            {dishes.map(d => 
                     <div key={d.dish_id}>
                     <ul>ID: {d.dish_id}</ul>
@@ -79,12 +80,12 @@ function Dishes(props) {
                             )}
 
 
-            <h3>Create a new dish:</h3>
+            <h3 className={styles.heading}>Create a new dish:</h3>
             <form onSubmit={dishHandler}>
                 <ul>Dish name</ul>
                 <ul><input style={{width: "190px"}} type="text" name="name" placeholder="Enter name of new dish"></input></ul>
-                <ul>Price of new dish</ul>
-                <ul><input style={{width: "190px"}} type="text" name="price" placeholder="Enter price of new dish"></input></ul>
+                <ul>Price of new dish €</ul>
+                <ul><input style={{width: "190px"}} type="text" name="price" placeholder="Enter price of new dish 00.00"></input></ul>
                 <ul>Information about the dish</ul>
                 <ul><input style={{width: "190px"}} type="text" name="dishinfo" placeholder="Enter information of new dish"></input></ul>
             
@@ -99,10 +100,10 @@ function Dishes(props) {
                     </select></ul>
                
 
-                <h4>Add a picture for the dish:</h4>
+                <h4 className={styles.heading}>Add a picture for the dish:</h4>
 
 
-                <input type="file" onChange={(event) => {
+                <input className={styles.heading} type="file" onChange={(event) => {
                 uploadImage(event.target.files)
                 }}
                 />

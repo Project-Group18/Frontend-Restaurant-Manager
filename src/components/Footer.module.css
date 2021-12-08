@@ -1,6 +1,7 @@
 .background {
     background-color: #ffffff;
     font-size: calc(10px + 2vmin);
+    margin-left: 40px;
   }
 
   
@@ -26,6 +27,6 @@
   .restaurantLogin:hover {
     cursor: pointer;
   }
-
+  
  
   

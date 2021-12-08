@@ -1,3 +1,4 @@
+import styles from './Loginpage.module.css';
 import React, { useState } from 'react'
 import api from '../api/config_login';
 import { useNavigate } from 'react-router-dom';
@@ -71,7 +72,7 @@ function Loginpage(props) {
     }
 
     return (
-        <div>
+        <div className={styles.background}>
           <br/>
             <h2>Login</h2>
             <form onSubmit={ handleLogIn}>
@@ -79,11 +80,15 @@ function Loginpage(props) {
                         <input type="text" name="email" placeholder="Enter email"></input>
                     <p>*Password:</p>
                         <input type="text" name="password" placeholder="Enter password"></input>
+                
+                    <br/>
                     <br/>
                     <div>
                        {logInUIControls}
                     </div>
                 </form>
+                <br/>
+                <br/>
         </div>
     )
 }

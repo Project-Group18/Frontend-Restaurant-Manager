@@ -1,3 +1,4 @@
+import styles from './CreateRestaurant.module.css'
 import React, { useState, useEffect } from 'react'
 import api from '../api/config';
 import jwtFromWeb from 'jsonwebtoken';
@@ -89,7 +90,7 @@ function CreateRestaurant(props) {
 
 
     return (
-        <div>   
+        <div className={styles.background}>   
             <h2>Create a restaurant profile</h2>
             <form onSubmit={handleCreation} >
                 <p>*Restaurant name:</p>
@@ -152,6 +153,7 @@ function CreateRestaurant(props) {
 
                 
             </form>
+            <br/>
         </div>
     )
 }

@@ -1,3 +1,4 @@
+import styles from './Registerpage.module.css';
 import React, {useState} from 'react'
 import api from '../api/config_new.js'
 import { useNavigate } from 'react-router-dom';
@@ -57,7 +58,7 @@ function Registerpage(props) {
     }
 
     return (
-        <div>
+        <div className={styles.background}>
             <h2>Sign up as a restaurant owner</h2>
                 <form onSubmit ={handleSignupSubmit} >
                     <p>*Name</p>
@@ -71,6 +72,8 @@ function Registerpage(props) {
                         {signupUIControls}
                     </div>
                 </form>
+                <br/>
+                <br/>
         </div>
     )
 }

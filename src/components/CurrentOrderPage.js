@@ -65,7 +65,8 @@ export default function CurrentOrderPage(props) {
    
     return (
        <div className="App">
-       <h1>Current order page</h1> 
+        <div className={styles.background}>
+       <h1>My orders</h1> 
       
 
 
@@ -85,7 +86,7 @@ export default function CurrentOrderPage(props) {
                     <ul>Customer ID: {orderElement.customer_id}</ul>
                     <ul>Restaurant ID: <input style={{width:'30px'}} name='restaurantid' value={orderElement.restaurant_id}/></ul>
 
-
+                    <div className={styles.status}>
                     <select name="orderStatus" onChange={(e) =>{
                         const selectedState=e.target.value;
                         setDropMenu(selectedState);
@@ -99,6 +100,7 @@ export default function CurrentOrderPage(props) {
 
 
                         <button type='submit' >Update order</button>
+                        </div>
                     <hr/>
                  
                 </form>
@@ -108,6 +110,7 @@ export default function CurrentOrderPage(props) {
             
             }
 
+      </div>
       </div>
     )
 }
