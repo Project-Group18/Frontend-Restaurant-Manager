@@ -1,3 +1,29 @@
 .heading{
     margin-left: 40px;
 }
+.createDish{
+    border-bottom: 1px solid grey;
+}
+
+.accountInfo {
+    display:flex;
+    background-color: #FFD8B4;
+    margin-top: 20px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 14px;
+    align-items:flex-start;
+    gap:325px;
+}
+.scrolldiv{
+    display:flex;
+    width:875px;
+    background: #FFD8B4;
+    height:450px;
+    overflow: hidden;
+    overflow-y:scroll;
+    flex-direction: column;
+  }

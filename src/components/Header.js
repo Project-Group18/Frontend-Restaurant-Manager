@@ -1,9 +1,6 @@
 import React from 'react'
 import styles from './Header.module.css'
 import { useState } from 'react';
-import LoginPopUp from './Login';
-import ManagerRegisterPopUp from './ManagerRegister.js';
-import CurrentOrderPage from './CurrentOrderPage';
 
 
 export default function Header(props) {
@@ -44,8 +41,6 @@ export default function Header(props) {
             
         </div>
       
-            <LoginPopUp trigger ={buttonLogin} setTrigger ={setButtonLogin}/>
-            <ManagerRegisterPopUp trigger={buttonRegister} setTrigger ={setButtonRegister}/>
         </div>
     )
 }
