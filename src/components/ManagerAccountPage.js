@@ -17,6 +17,7 @@ export default function ManagerAccountPage(props) {
     const [dishes, setDishes] = useState([]);
 
 
+
         //get restaurant with managerid
         useEffect(() => {
             const loadRestaurantWithJWT =  async () => {
