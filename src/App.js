@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Frontpage from './components/Frontpage';
 import ManagerAccountPage from './components/ManagerAccountPage';
 import CurrentOrderPage from './components/CurrentOrderPage.js';
@@ -9,7 +9,6 @@ import Registerpage from './components/Registerpage';
 import Loginpage from './components/Loginpage';
 import Payload from './components/Payload.js';
 import CreateRestaurant from './components/CreateRestaurant.js';
-
 const jwtFromLocalStorage = window.localStorage.getItem('localStorageJWT');
 
 function App() {
@@ -45,7 +44,7 @@ function App() {
   setUserJWT(null)
   window.localStorage.removeItem('localStorageJWT');
 }}/>
-
+<br/><br/><br/>
 <Router>
       <div style={{ display:"flex", justifyContent: "space-around" }}>
 
@@ -65,8 +64,8 @@ function App() {
     </Routes>
 
    </Router>
-    
-      <Footer/>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <Footer />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import styles from './Category.module.css';
-import React from 'react'
+import React, { useState } from 'react'
 import api from '../api/config_manager';
 import jwtFromWeb from 'jsonwebtoken';
 
@@ -7,9 +7,15 @@ function Category(props) {
 
     const  {jwt, categories} = props;
     const decodedToken = jwtFromWeb.decode(jwt);
+    const [ categoryAddProcessState, setCategoryAddProcessState] = useState("idle")
 
     const categoryHandler = (event) => {
         event.preventDefault();
+        setCategoryAddProcessState("processing")
+
+        if(
+            event.target.category.value.length >= 4
+        ) {
     
         const createCategory =  async () => {
             try {const res = await api.post('/createCategory', 
@@ -23,15 +29,40 @@ function Category(props) {
                 }
             } 
             );
+            setCategoryAddProcessState("categoryAddSuccessful")
             console.log(res);
             //forces component to refresh the page
             window.location.reload(false);
             } catch (error) {
-               console.log(error)
+                setCategoryAddProcessState("categoryAddFailed")
+                console.log(error)
             }
             } 
             createCategory();
+        } else {
+            setCategoryAddProcessState("categoryAddFailed")
         }
+        }
+
+        let categoryAddUIControls = null;
+        switch(categoryAddProcessState) {
+            case "idle":
+                categoryAddUIControls =<button type="submit">Create category</button>
+                break;
+            case "processing": 
+                categoryAddUIControls = <span style={{color:"blue"}}>Processing...</span>
+                break;
+            case "categoryAddSuccessful":
+                categoryAddUIControls = <span style={{color:"green"}}>Category creation successful</span>
+                break;
+            case "categoryAddFailed":
+                categoryAddUIControls = <span style={{color:"red"}}>Category creation failed</span>
+                setTimeout(() => {
+                    window.location.reload(false);
+                }, 2000);
+                break;
+            }
+
 
 
 
@@ -47,8 +78,9 @@ function Category(props) {
 
         <h3 className={styles.heading}>Create a new category</h3>
             <form onSubmit={categoryHandler}>
-                <ul><input style={{width: "190px"}} type="text" name="category" placeholder="Enter name of new category"></input></ul>
-                <ul><button type="submit">Submit</button></ul>
+                <ul><input style={{width: "190px"}} type="text" name="category" placeholder="Enter name of new category"></input>
+                <span> Note: Category name must be at least 4 characters.</span></ul>
+                <ul>{categoryAddUIControls}</ul>
             </form>
         </div>
     )

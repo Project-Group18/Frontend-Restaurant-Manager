@@ -35,15 +35,10 @@ function Loginpage(props) {
             console.log("restid!!!")
             console.log(decodedToken.user.restid)
 
-
-        
             setTimeout(() => {
                 navigate('/', {replace: true})
             }, 1500)
-                    //resetting navigation history?
-                   /*  {state:{
-                        email:event.target.email.value
-                        }} */
+                   
     
             } catch (error) {
                 setlogInSetUpState("SignInFailed");
@@ -68,6 +63,9 @@ function Loginpage(props) {
 
         case "SignInFailed":
             logInUIControls = <span style={{color:"red"}}>Sign in failed</span>
+            setTimeout(() => {
+                window.location.reload(false);
+            }, 1500);
             break;
     }
 
@@ -80,7 +78,6 @@ function Loginpage(props) {
                         <input type="text" name="email" placeholder="Enter email"></input>
                     <p>*Password:</p>
                         <input type="text" name="password" placeholder="Enter password"></input>
-                
                     <br/>
                     <br/>
                     <div>
