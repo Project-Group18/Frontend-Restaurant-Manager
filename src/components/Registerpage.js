@@ -14,8 +14,8 @@ function Registerpage() {
         setSignupProcessState("processing");
 
         if (
-            event.target.name.value.length > 1 && 
-            event.target.email.value.length > 5 && 
+            event.target.name.value.length >= 2 && 
+            event.target.email.value.length >= 6 && 
             event.target.email.value.includes("@") && 
             event.target.password.value.length >= 8  
             )
@@ -46,6 +46,7 @@ function Registerpage() {
             setSignupProcessState("SignUpFailed");
         }
             };
+
 
     let signupUIControls = null;
     switch(signupProcessState) {
