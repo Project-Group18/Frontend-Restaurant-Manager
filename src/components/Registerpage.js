@@ -17,6 +17,11 @@ function Registerpage(props) {
         console.log(event.target.email.value);
         console.log(event.target.password.value);
 
+
+        if (event.target.name.value == null) {
+        if (event.target.email.value == null) {
+        if (event.target.password.value == null) {
+
         const createManager =  async () => {
             try {const res = await api.post('/manager', 
                 {
@@ -38,7 +43,18 @@ function Registerpage(props) {
             }
             } 
                 createManager();
-            };
+
+            } else {
+                setSignupProcessState("SignUpFailed");
+            } 
+            } else {
+                setSignupProcessState("SignUpFailed");
+            }
+            } else {
+                setSignupProcessState("SignUpFailed");
+            }
+        }
+
 
     let signupUIControls = null;
     switch(signupProcessState) {
