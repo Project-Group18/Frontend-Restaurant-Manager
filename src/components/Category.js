@@ -5,7 +5,6 @@ import jwtFromWeb from 'jsonwebtoken';
 
 function Category(props) {
 
-
     const  {jwt, categories} = props;
     const decodedToken = jwtFromWeb.decode(jwt);
 
@@ -24,15 +23,12 @@ function Category(props) {
                 }
             } 
             );
-            
             console.log(res);
             //forces component to refresh the page
             window.location.reload(false);
-                    
             } catch (error) {
                console.log(error)
             }
-            
             } 
             createCategory();
         }
@@ -42,8 +38,6 @@ function Category(props) {
     return (
         <div>
             <h2 className={styles.heading}>Menu categories</h2>
-
-
 
             {categories.map(category => 
                     <div key={category.category_id}>

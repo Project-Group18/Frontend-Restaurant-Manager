@@ -9,7 +9,6 @@ import Registerpage from './components/Registerpage';
 import Loginpage from './components/Loginpage';
 import Payload from './components/Payload.js';
 import CreateRestaurant from './components/CreateRestaurant.js';
-import jwt from 'jsonwebtoken';
 
 const jwtFromLocalStorage = window.localStorage.getItem('localStorageJWT');
 

@@ -1,17 +1,13 @@
 import React from 'react'
 import styles from './Header.module.css'
-import { useState } from 'react';
-
+import {Image} from 'cloudinary-react'
 
 export default function Header(props) {
 
-    const [buttonLogin, setButtonLogin] = useState(false);
-    const [buttonRegister, setButtonRegister] = useState(false);
     return (
         <div>
               <div class={styles.Headercontainer}>
-        <a href="/"><img className={styles.image} src='olivertwistLogo1.jpg' alt=''/></a>
-
+        <Image href='/' className={styles.image} cloudName="dczwvybll" publicId="https://res.cloudinary.com/dczwvybll/image/upload/v1639051046/uploadPreset2021/olivertwistLogo1_d645nb.jpg"/>
                   <div className={styles.Account}>
 
 
@@ -21,8 +17,6 @@ export default function Header(props) {
                                 <button><a href='/currentOrdersPage' > Orders </a></button>
                                 <button > <a href='/managerAccountPage' > My account</a></button>
                                 <button onClick={props.logout} ><a href='/'> Log out</a></button>
-                                
-
                             </>
                             :
                             <>
@@ -33,10 +27,7 @@ export default function Header(props) {
                             }
 
 
-{/*    We will see later if we have time to implement these (popups I mean)    */}         
 
-{/*  <button onClick={() => setButtonLogin(true)}>Log in</button>
-<button onClick={() => setButtonRegister(true)}>Sign up</button> */}
                   </div>
             
         </div>
