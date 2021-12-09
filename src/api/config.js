@@ -1,13 +1,12 @@
 import axios from 'axios';
 
+//this config is used to access public requests
 
 export default axios.create({
-    baseURL: 'http://localhost:3001/public'
+    baseURL: 'https://delivertwist18.herokuapp.com/public'
     
 });
 
-//localhost is for testing purposes only
-//''
-//https://delivertwist18.herokuapp.com
+//'http://localhost:3001'
 
 
