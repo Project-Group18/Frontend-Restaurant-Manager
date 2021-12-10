@@ -43,12 +43,19 @@ function Dishes(props) {
         event.preventDefault();
         setDishAddProcessState("processing")
 
+
+        console.log(event.target.name.value)
+        console.log(event.target.price.value)
+        console.log(categoryType)
+        console.log(event.target.dishinfo.value)
+        console.log(decodedToken.user.restid)
+
+
         if(
             event.target.name.value.length >= 3 &&
             event.target.price.value.length > 0 &&
             !event.target.price.value.includes(",") &&
-            event.target.price.value.match(/^[0-9]+$/) != null &&
-            event.target.name.value.length <= 30 &&
+            event.target.dishinfo.value.length <= 30 &&
             categoryType != "--"
         ) 
         {
@@ -72,7 +79,7 @@ function Dishes(props) {
             setDishAddProcessState("dishAddSuccessful")
             console.log(res);
             //forces component to refresh the page
-            window.location.reload(false);
+            /* window.location.reload(false); */
             setImageUrl("");
                     
             } catch (error) {
@@ -82,6 +89,7 @@ function Dishes(props) {
             } 
             createDish();
         } else {
+            console.log("Input was wrong    ")
             setDishAddProcessState("dishAddFailed")
         }
         }
@@ -99,9 +107,9 @@ function Dishes(props) {
                 break;
             case "dishAddFailed":
                 dishAddUIControls = <span style={{color:"red"}}>Dish creation failed</span>
-                setTimeout(() => {
+                /* setTimeout(() => {
                     window.location.reload(false);
-                }, 2000);
+                }, 2000); */
                 break;
             }
 
@@ -123,6 +131,8 @@ function Dishes(props) {
                 <ul><h4>Category type</h4></ul>
                     <ul><select name="categorytype" onChange={(e) =>{
                         const selectedState=e.target.value;
+                        console.log("e.target.value")
+                        console.log(e.target.value)
                         setCategoryType(selectedState);
                         }}>
                             <option value="--">--</option>
