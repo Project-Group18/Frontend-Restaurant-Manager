@@ -55,7 +55,10 @@ function Dishes(props) {
             event.target.name.value.length >= 3 &&
             event.target.price.value.length > 0 &&
             !event.target.price.value.includes(",") &&
+            event.target.price.value.match(/^[0-9,.]+$/) != null &&
+            event.target.price.value > 0 &&
             event.target.dishinfo.value.length <= 30 &&
+            
             categoryType != "--"
         ) 
         {
@@ -129,17 +132,19 @@ function Dishes(props) {
                 <ul><input style={{width: "190px"}} type="text" name="dishinfo" placeholder="Enter information of new dish"></input></ul>
                 <ul><span> Note: Maximum length 30 characters</span></ul>
                 <ul><h4>Category type</h4></ul>
-                    <ul><select name="categorytype" onChange={(e) =>{
-                        const selectedState=e.target.value;
-                        console.log("e.target.value")
-                        console.log(e.target.value)
-                        setCategoryType(selectedState);
-                        }}>
-                            <option value="--">--</option>
-                        {
-                            categories.map(element =><option {...element} key={element.cateogry_id} value={element.category_id}> {element.category_name} </option>)
-                        }
-                    </select></ul>
+                <ul>
+                    <select name="categorytype" onChange={(e) =>{
+                    const selectedState=e.target.value;
+                    console.log("e.target.value")
+                    console.log(e.target.value)
+                    setCategoryType(selectedState);
+                    }}>
+                        <option value="--">--</option>
+                    {
+                        categories.map(element =><option {...element} key={element.cateogry_id} value={element.category_id}> {element.category_name} </option>)
+                    }
+                    </select>
+                </ul>
                
 
                 <h4 className={styles.heading}>Add a picture of the dish:</h4>

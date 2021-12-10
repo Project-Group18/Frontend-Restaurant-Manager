@@ -27,14 +27,17 @@ function Category(props) {
         event.preventDefault();
         setCategoryAddProcessState("processing")
 
+        console.log("length")
+        console.log(categoryNames.length)
         
 
         if(
             event.target.category.value.length >= 4 &&
             !categoryNames.includes(event.target.category.value) &&
-            !categroyNamesLowerCase.includes(event.target.category.value)
+            !categroyNamesLowerCase.includes(event.target.category.value) &&
+            categoryNames.length < 12
         ) {
-    
+            
         const createCategory =  async () => {
             try {const res = await api.post('/createCategory', 
             {
@@ -50,7 +53,7 @@ function Category(props) {
             setCategoryAddProcessState("categoryAddSuccessful")
             console.log(res);
             //forces component to refresh the page
-            window.location.reload(false);
+           /*  window.location.reload(false); */
             } catch (error) {
                 setCategoryAddProcessState("categoryAddFailed")
                 console.log(error)
@@ -75,9 +78,9 @@ function Category(props) {
                 break;
             case "categoryAddFailed":
                 categoryAddUIControls = <span style={{color:"red"}}>Category creation failed</span>
-                setTimeout(() => {
+               /*  setTimeout(() => {
                     window.location.reload(false);
-                }, 2000);
+                }, 2000); */
                 break;
             }
 
@@ -94,7 +97,7 @@ function Category(props) {
             <h3 className={styles.heading}>Create a new category</h3>
             <form onSubmit={categoryHandler}>
                 <ul><input style={{width: "190px"}} type="text" name="category" placeholder="Enter name of new category"></input>
-                <span> Note: Category name must be at least 4 characters.</span></ul>
+                    <span> Note: Category name must be at least 4 characters and the max is 12 categories.</span></ul>
                 <ul>{categoryAddUIControls}</ul>
             </form>
         </div>
