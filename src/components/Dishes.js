@@ -124,7 +124,7 @@ function Dishes(props) {
                 <ul><span> Note: Dish name must be at least 3 characters</span></ul>
                 <ul><h4>Price of new dish €</h4></ul>
                 <ul><input style={{width: "190px"}} type="text" name="price" placeholder="Enter price of new dish 00.00"></input></ul>
-                <ul><span> Note: Price must only include numbers and can't include ","</span></ul>
+                <ul><span> Note: Price must only include numbers, decimal separator is "."</span></ul>
                 <ul><h4>Information about the dish</h4></ul>
                 <ul><input style={{width: "190px"}} type="text" name="dishinfo" placeholder="Enter information of new dish"></input></ul>
                 <ul><span> Note: Maximum length 30 characters</span></ul>

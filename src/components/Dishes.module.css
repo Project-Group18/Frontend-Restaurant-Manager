@@ -15,15 +15,14 @@
     border-width: 1px;
     border-color: black;
     border-radius: 14px;
-    align-items:flex-start;
-    gap:325px;
+    justify-content: space-between;
 }
 .scrolldiv{
     display:flex;
-    width:875px;
     background: #FFD8B4;
-    height:450px;
+    height: 600px;
+    width: 600px;
     overflow: hidden;
     overflow-y:scroll;
-    flex-direction: column;
+    flex-direction: column ;
   }

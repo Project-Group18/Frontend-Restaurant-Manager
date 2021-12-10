@@ -8,8 +8,9 @@
     border-width: 1px;
     border-color: black;
     border-radius: 14px;
-    gap: 400px;
-    align-items:flex-start;
+    justify-content:space-between;
+    gap: 60px;
+    padding-right: 40px;
 }
 .background{
     margin-left: 40px;
@@ -19,9 +20,7 @@
     margin-left: 40px;
 }
 
-
 .restaurant{
     display:flex;
-    gap: 150px;
-    align-items:flex-start;
+    gap: 200px;
 }
