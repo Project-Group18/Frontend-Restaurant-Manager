@@ -13,7 +13,7 @@ function Dishes(props) {
 
     const [imageSelected, setImageSelected] = useState("");
     const [imageUrl, setImageUrl] = useState("");
-    
+    const [ dishAddProcessState, setDishAddProcessState] = useState("idle")
 
     const uploadImage = (files) => {
         const formData = new FormData()
@@ -29,10 +29,22 @@ function Dishes(props) {
 
     const dishHandler = (event) => {
         event.preventDefault();
+        setDishAddProcessState("processing")
+
         console.log(event.target.name.value)
         console.log(event.target.price.value)
         console.log(event.target.dishinfo.value)
         console.log(categoryType)
+
+        if(
+            event.target.name.value.length >= 3 &&
+            event.target.price.value.length > 0 &&
+            !event.target.price.value.includes(",") &&
+            event.target.price.value.match(/^[0-9]+$/) != null &&
+            event.target.name.value.length <= 30 &&
+            categoryType != "--"
+        ) 
+        {
 
         const createDish =  async () => {
             try {const res = await api.post('/createDish', 
@@ -50,6 +62,7 @@ function Dishes(props) {
                 }
             } 
             );
+            setDishAddProcessState("dishAddSuccessful")
             console.log(res);
             //forces component to refresh the page
             window.location.reload(false);
@@ -57,11 +70,34 @@ function Dishes(props) {
             setImageUrl("");
                     
             } catch (error) {
-               console.log(error)
+                console.log(error)
+                setDishAddProcessState("dishAddFailed")
             }
             } 
             createDish();
+        } else {
+            setDishAddProcessState("dishAddFailed")
         }
+        }
+
+        let dishAddUIControls = null;
+        switch(dishAddProcessState) {
+            case "idle":
+                dishAddUIControls =<button type="submit">Create dish</button>
+                break;
+            case "processing": 
+                dishAddUIControls = <span style={{color:"blue"}}>Processing...</span>
+                break;
+            case "dishAddSuccessful":
+                dishAddUIControls = <span style={{color:"green"}}>Dish creation successful</span>
+                break;
+            case "dishAddFailed":
+                dishAddUIControls = <span style={{color:"red"}}>Dish creation failed</span>
+                setTimeout(() => {
+                    window.location.reload(false);
+                }, 2000);
+                break;
+            }
 
     return (
         <div>
@@ -69,13 +105,16 @@ function Dishes(props) {
             <div>
             <h2 className={styles.heading}>Create a new dish</h2>
             <form onSubmit={dishHandler}>
-                <ul>Dish name</ul>
+                <ul><h4>Dish name</h4></ul>
                 <ul><input style={{width: "190px"}} type="text" name="name" placeholder="Enter name of new dish"></input></ul>
-                <ul>Price of new dish €</ul>
+                <ul><span> Note: Dish name must be at least 3 characters</span></ul>
+                <ul><h4>Price of new dish €</h4></ul>
                 <ul><input style={{width: "190px"}} type="text" name="price" placeholder="Enter price of new dish 00.00"></input></ul>
-                <ul>Information about the dish</ul>
+                <ul><span> Note: Price must only include numbers and can't include ","</span></ul>
+                <ul><h4>Information about the dish</h4></ul>
                 <ul><input style={{width: "190px"}} type="text" name="dishinfo" placeholder="Enter information of new dish"></input></ul>
-            
+                <ul><span> Note: Maximum length 30 characters</span></ul>
+                <ul><h4>Category type</h4></ul>
                     <ul><select name="categorytype" onChange={(e) =>{
                         const selectedState=e.target.value;
                         setCategoryType(selectedState);
@@ -94,22 +133,7 @@ function Dishes(props) {
                 uploadImage(event.target.files)
                 }}
                 />
-               
-
-
-
-                    <div >
-                    {imageSelected === "" ? 
-                    <>
-                    <ul><button type="submit">Submit</button></ul>
-                    </>
-                    :
-                    <>
-                    <h4>Wait for the image to upload</h4>
-                    </>
-                    }
-                    </div>
-
+                <ui>{dishAddUIControls}</ui>
                 
             </form>
             </div>

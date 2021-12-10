@@ -86,7 +86,6 @@ export default function ManagerAccountPage(props) {
                         <ul>ID: {decodedToken.user.id} </ul>
                         <ul>Name: {decodedToken.user.name} </ul>
                         <ul>Email: {decodedToken.user.email}</ul>
-                        <ul>Restaurant ID: {decodedToken.restid}</ul>
                     </div>
             </div>
   
@@ -97,13 +96,12 @@ export default function ManagerAccountPage(props) {
         {restaurant.map(restaurantElement=>
             <div className={styles.restaurant}>
             <div  key={restaurantElement.restaurant_id}>
-                <ul>ID: {restaurantElement.restaurant_id}</ul>
+                <ul>Restaurant ID: {restaurantElement.restaurant_id}</ul>
                 <ul>Name: {restaurantElement.restaurant_name}</ul>
                 <ul>Type: {restaurantElement.restaurant_type}</ul>
                 <ul>Hours: {restaurantElement.open_hours}</ul>
                 <ul>Price level: {restaurantElement.price_level}</ul>
                 <ul>Location: {restaurantElement.location}</ul>
-                <ul>Restaurant picture:</ul>
                 <ul>
                 </ul>
                </div>

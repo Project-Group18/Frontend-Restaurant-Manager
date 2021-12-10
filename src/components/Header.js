@@ -14,15 +14,17 @@ export default function Header(props) {
                   {props.userLoggedIn ? 
                             <>
                                 {/* If user is logged in, render these buttons */}
-                                <button><a href='/currentOrdersPage' > Orders </a></button>
-                                <button > <a href='/managerAccountPage' > My account</a></button>
-                                <button onClick={props.logout} ><a href='/'> Log out</a></button>
+                                <button className={styles.buttonContainer}><a href='/' className={styles.buttonFont}> Frontpage </a></button>
+                                <button className={styles.buttonContainer}><a href='/currentOrdersPage' className={styles.buttonFont}> Orders </a></button>
+                                <button className={styles.buttonContainer}> <a href='/managerAccountPage' className={styles.buttonFont}> My account</a></button>
+                                <button onClick={props.logout} className={styles.buttonContainer}><a href='/' className={styles.buttonFont}> Log out</a></button>
                             </>
                             :
                             <>
                                 {/* If user is not logged in, render these buttons */}
-                                <button > <a href='/loginpage' > Log in</a></button>
-                                <button > <a href='/registerpage' > Sign up</a></button>
+                                <button className={styles.buttonContainer}><a href='/' className={styles.buttonFont}> Frontpage </a></button>
+                                <button className={styles.buttonContainer}> <a href='/loginpage' className={styles.buttonFont}> Log in</a></button>
+                                <button className={styles.buttonContainer}> <a href='/registerpage' className={styles.buttonFont}> Sign up</a></button>
                             </>
                             }
 

@@ -25,7 +25,6 @@ function Frontpage(props) {
             </>
           }
         </div>
-      
       </header>
       </div>
   );
