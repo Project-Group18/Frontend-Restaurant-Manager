@@ -8,13 +8,31 @@ function Category(props) {
     const  {jwt, categories} = props;
     const decodedToken = jwtFromWeb.decode(jwt);
     const [ categoryAddProcessState, setCategoryAddProcessState] = useState("idle")
+    const categoryNames = [];
+    const categroyNamesLowerCase = [];
+
+    categories.forEach(category1 => 
+        categoryNames.push(
+            category1.category_name
+            )
+        )  
+
+    categories.forEach(category2 => 
+        categroyNamesLowerCase.push(
+            category2.category_name.toLowerCase()
+            )
+        ) 
 
     const categoryHandler = (event) => {
         event.preventDefault();
         setCategoryAddProcessState("processing")
 
+        
+
         if(
-            event.target.category.value.length >= 4
+            event.target.category.value.length >= 4 &&
+            !categoryNames.includes(event.target.category.value) &&
+            !categroyNamesLowerCase.includes(event.target.category.value)
         ) {
     
         const createCategory =  async () => {
@@ -63,20 +81,17 @@ function Category(props) {
                 break;
             }
 
-
-
-
     return (
         <div>
             <h2 className={styles.heading}>Menu categories</h2>
 
             {categories.map(category => 
-                    <div key={category.category_id}>
+                <div key={category.category_id}>
                     <ul>{category.category_id}.{category.category_name}</ul>
-                    </div>
-                            )}
+                </div>
+            )}
 
-        <h3 className={styles.heading}>Create a new category</h3>
+            <h3 className={styles.heading}>Create a new category</h3>
             <form onSubmit={categoryHandler}>
                 <ul><input style={{width: "190px"}} type="text" name="category" placeholder="Enter name of new category"></input>
                 <span> Note: Category name must be at least 4 characters.</span></ul>
