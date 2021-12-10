@@ -79,7 +79,7 @@ function Dishes(props) {
             setDishAddProcessState("dishAddSuccessful")
             console.log(res);
             //forces component to refresh the page
-            /* window.location.reload(false); */
+            window.location.reload(false);
             setImageUrl("");
                     
             } catch (error) {
@@ -107,9 +107,9 @@ function Dishes(props) {
                 break;
             case "dishAddFailed":
                 dishAddUIControls = <span style={{color:"red"}}>Dish creation failed</span>
-                /* setTimeout(() => {
+                setTimeout(() => {
                     window.location.reload(false);
-                }, 2000); */
+                }, 2000);
                 break;
             }
 
