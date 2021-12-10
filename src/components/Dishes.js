@@ -10,10 +10,22 @@ function Dishes(props) {
     const{jwt, dishes, categories, restaurant} = props;
     const decodedToken = jwtFromWeb.decode(jwt);
     const [categoryType, setCategoryType] = useState([]);
-
-    const [imageSelected, setImageSelected] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [ dishAddProcessState, setDishAddProcessState] = useState("idle")
+    const dishNames = [];
+    const dishNamesLowerCase = [];
+
+    dishes.forEach(dish1 => 
+        dishNames.push(
+            dish1.dish_name
+            )
+        )  
+
+    dishes.forEach(dish2 => 
+        dishNamesLowerCase.push(
+            dish2.dish_name.toLowerCase()
+            )
+        ) 
 
     const uploadImage = (files) => {
         const formData = new FormData()
@@ -30,11 +42,6 @@ function Dishes(props) {
     const dishHandler = (event) => {
         event.preventDefault();
         setDishAddProcessState("processing")
-
-        console.log(event.target.name.value)
-        console.log(event.target.price.value)
-        console.log(event.target.dishinfo.value)
-        console.log(categoryType)
 
         if(
             event.target.name.value.length >= 3 &&
@@ -66,7 +73,6 @@ function Dishes(props) {
             console.log(res);
             //forces component to refresh the page
             window.location.reload(false);
-            setImageSelected("")
             setImageUrl("");
                     
             } catch (error) {
